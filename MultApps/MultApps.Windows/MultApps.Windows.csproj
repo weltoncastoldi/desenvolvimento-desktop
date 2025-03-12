@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassificacaoImc.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +59,7 @@
     <Compile Include="FrmCalculadoraIMC.Designer.cs">
       <DependentUpon>FrmCalculadoraIMC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImcImagem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCalculadoraIMC.resx">
@@ -86,13 +88,5 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="images\imc_masculino_grau3.png" />
-    <Content Include="images\imc_masculino_grau2.png" />
-    <Content Include="images\imc_masculino_grau1.png" />
-    <Content Include="images\imc_masculino_sobrepeso.png" />
-    <Content Include="images\imc_masculino_normal.png" />
-    <Content Include="images\imc_masculino_abaixo_normal.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
