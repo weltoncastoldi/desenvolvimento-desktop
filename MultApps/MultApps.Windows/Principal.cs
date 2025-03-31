@@ -23,5 +23,11 @@ namespace MultApps.Windows
             form.MdiParent = this;
             form.Show();
         }
+
+        private void MDIPrincipal_Shown(object sender, EventArgs e)
+        {
+            var loading = new SplashScreen();
+            loading.ShowDialog();
+        }
     }
 }
