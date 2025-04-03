@@ -127,6 +127,10 @@
       <Project>{584475f0-e11a-4979-8410-6bc64f2ecaf2}</Project>
       <Name>MultApps.Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MODEL\MultApps.Models\MultApps.Models.csproj">
+      <Project>{e61eb934-93a8-40fa-b301-b0ab2a4c1fb6}</Project>
+      <Name>MultApps.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 
 namespace MultApps.Models.Repositories
 {
-    internal class CategoriaRepository
+    public class CategoriaRepository
     {
         public string ConnectionString = "Server=localhost;Database=multapps_dev; Uid=root;Pwd=SuperSenha@10";
 
@@ -14,7 +14,7 @@ namespace MultApps.Models.Repositories
         {
             using (IDbConnection db = new MySqlConnection(ConnectionString))
             {
-                var comandoSql = @"INSERT INTO categorias (nome, status)
+                var comandoSql = @"INSERT INTO categoria (nome, status)
                                    VALUES(@Nome, @Status )";
 
                 var parametros = new DynamicParameters();
