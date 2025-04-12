@@ -43,6 +43,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnDeletar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -152,17 +153,19 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.BackColor = System.Drawing.Color.LightGreen;
             this.btnSalvar.Location = new System.Drawing.Point(806, 98);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(132, 38);
             this.btnSalvar.TabIndex = 11;
             this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.btnDeletar);
             this.groupBox1.Controls.Add(this.txtId);
             this.groupBox1.Controls.Add(this.btnSalvar);
             this.groupBox1.Controls.Add(this.label1);
@@ -200,6 +203,17 @@
             this.button1.Text = "Limpar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // btnDeletar
+            // 
+            this.btnDeletar.Enabled = false;
+            this.btnDeletar.Location = new System.Drawing.Point(653, 98);
+            this.btnDeletar.Name = "btnDeletar";
+            this.btnDeletar.Size = new System.Drawing.Size(132, 38);
+            this.btnDeletar.TabIndex = 12;
+            this.btnDeletar.Text = "Deletar";
+            this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // FrmCategoria
             // 
@@ -240,5 +254,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDeletar;
     }
 }
