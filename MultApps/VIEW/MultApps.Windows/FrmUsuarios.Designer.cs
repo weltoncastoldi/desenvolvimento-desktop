@@ -35,7 +35,6 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,11 +45,12 @@
             this.txtDataCadastro = new System.Windows.Forms.TextBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbFiltro = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,7 +61,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(434, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -72,6 +72,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel2.Controls.Add(this.txtCpf);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.btnSalvar);
             this.panel2.Controls.Add(this.label8);
@@ -85,7 +86,6 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.txtCpf);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtNome);
             this.panel2.Controls.Add(this.btnNovo);
@@ -144,14 +144,6 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "CPF";
             // 
-            // txtCpf
-            // 
-            this.txtCpf.Location = new System.Drawing.Point(237, 105);
-            this.txtCpf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(174, 26);
-            this.txtCpf.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -185,6 +177,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(386, 26);
             this.txtSenha.TabIndex = 9;
+            this.txtSenha.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -197,6 +190,7 @@
             // 
             // txtUltimoAcesso
             // 
+            this.txtUltimoAcesso.Enabled = false;
             this.txtUltimoAcesso.Location = new System.Drawing.Point(237, 316);
             this.txtUltimoAcesso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUltimoAcesso.Name = "txtUltimoAcesso";
@@ -214,6 +208,7 @@
             // 
             // txtDataCadastro
             // 
+            this.txtDataCadastro.Enabled = false;
             this.txtDataCadastro.Location = new System.Drawing.Point(24, 316);
             this.txtDataCadastro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDataCadastro.Name = "txtDataCadastro";
@@ -237,13 +232,13 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Status";
             // 
-            // comboBox2
+            // cmbFiltro
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(25, 38);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(204, 28);
-            this.comboBox2.TabIndex = 17;
+            this.cmbFiltro.FormattingEnabled = true;
+            this.cmbFiltro.Location = new System.Drawing.Point(25, 38);
+            this.cmbFiltro.Name = "cmbFiltro";
+            this.cmbFiltro.Size = new System.Drawing.Size(204, 28);
+            this.cmbFiltro.TabIndex = 17;
             // 
             // label9
             // 
@@ -288,6 +283,14 @@
             this.button2.Text = "Excluir";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(242, 105);
+            this.txtCpf.Mask = "999,999,999-99";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(169, 26);
+            this.txtCpf.TabIndex = 19;
+            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -316,7 +319,7 @@
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbFiltro;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label6;
@@ -328,10 +331,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
     }
 }

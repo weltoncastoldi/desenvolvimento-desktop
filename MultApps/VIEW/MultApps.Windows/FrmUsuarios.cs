@@ -18,6 +18,13 @@ namespace MultApps.Windows
         public FrmUsuarios()
         {
             InitializeComponent();
+            //Carregar o status do usuário.
+            var status = new[] { "ativo", "inativo" };
+            var filtros = new[] { "todos", "ativos", "inativos" };
+            cmbStatus.Items.AddRange(status);
+            cmbFiltro.Items.AddRange(filtros);
+            
+            cmbStatus.SelectedIndex = 0;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -26,6 +33,12 @@ namespace MultApps.Windows
             //try para capturar erros de conversão de valores.
             try
             {
+                //Verifica se tem campos em branco.
+                if (TemCamposEmBranco())
+                {
+                    return;
+                }
+
                 var usuario = new Usuario();
                 usuario.Nome = txtNome.Text;
                 usuario.Cpf = txtCpf.Text;
@@ -36,6 +49,15 @@ namespace MultApps.Windows
                 //2 Passo criar o objeto de repositório.
                 var usuarioRepository = new UsuarioRepository();
                 
+                // Verifica se o email já existe.
+                var emailJaExiste = usuarioRepository.EmailExistente(usuario.Email);
+                if(emailJaExiste)
+                {
+                    MessageBox.Show($"O email {usuario.Email} já está cadastrado.");
+                    txtEmail.Focus();
+                    return;
+                }
+
                 //3 Passo chamar o método de cadastro.
                 var sucesso = usuarioRepository.CadastrarUsuario(usuario);
 
