@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using Dapper;
 using MultApps.Models.Entities;
@@ -51,7 +52,7 @@ namespace MultApps.Models.Repositories
                                           email AS Email, 
                                           data_cadastro AS DataCadastro,
                                           data_alteracao AS DataAlteracao,
-                                          data_ultimo_acesso AS DataUltimoAcesso,     
+                                          data_ultimo_acesso AS DataUltimoAcesso     
                                    FROM usuario"; 
                 var usuarios = db.Query<Usuario>(comandoSql).ToList();
                 // Converte a lista de usuários para um DataTable
@@ -60,14 +61,18 @@ namespace MultApps.Models.Repositories
                 dataTable.Columns.Add("Nome", typeof(string));
                 dataTable.Columns.Add("Cpf", typeof(string));
                 dataTable.Columns.Add("Email", typeof(string));
+                dataTable.Columns.Add("Data Cadastro", typeof(DateTime));
+                dataTable.Columns.Add("Data Alteracao", typeof(DateTime));
+                dataTable.Columns.Add("Data Ultimo Acesso", typeof(DateTime));
                 foreach (var usuario in usuarios)
                 {
-                    dataTable.Rows.Add(usuario.Id, 
-                        usuario.Nome, 
-                        usuario.Cpf, 
-                        usuario.Email, 
-                        usuario.Senha, 
-                        usuario.Status);
+                    dataTable.Rows.Add(usuario.Id,
+                        usuario.Nome,
+                        usuario.Cpf,
+                        usuario.Email,
+                        usuario.DataCriacao,
+                        usuario.DataAlteracao,
+                        usuario.DataUltimoAcesso);
                 }
                 return dataTable;
             }
