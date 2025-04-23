@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MultApps.Models.Entities;
 using MultApps.Models.Enums;
 using MultApps.Models.Repositories;
+using MultApps.Models.Services;
 
 namespace MultApps.Windows
 {
@@ -25,6 +26,7 @@ namespace MultApps.Windows
             cmbFiltro.Items.AddRange(filtros);
             
             cmbStatus.SelectedIndex = 1;
+            cmbFiltro.SelectedIndex = 0;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace MultApps.Windows
                 usuario.Nome = txtNome.Text;
                 usuario.Cpf = txtCpf.Text;
                 usuario.Email = txtEmail.Text;
-                usuario.Senha = txtSenha.Text;
+                usuario.Senha = CriptografiaService.Criptografar(txtSenha.Text);
                 usuario.Status = (StatusEnum)cmbStatus.SelectedIndex;
 
                 //2 Passo criar o objeto de repositório.
@@ -80,8 +82,7 @@ namespace MultApps.Windows
             }
 
         }
-
-
+        
         private bool TemCamposEmBranco()
         {
             if (string.IsNullOrEmpty(txtNome.Text))
@@ -120,12 +121,12 @@ namespace MultApps.Windows
             }
             return false;
         }
-
+        
         private void FrmUsuarios_Load(object sender, EventArgs e)
         {
             CarregarTodosUsuario();
         }
-
+        
         private void CarregarTodosUsuario()
         {
             var usuarioRepository = new UsuarioRepository();
@@ -133,7 +134,7 @@ namespace MultApps.Windows
             var listaUsuario = usuarioRepository.ListarUsuarios();
             dataGridView1.DataSource = listaUsuario;
         }
-
+        
         private void LimparCampos()
         {
             txtCpf.Clear();
@@ -143,6 +144,27 @@ namespace MultApps.Windows
             txtDataCadastro.Clear();
             txtUltimoAcesso.Clear();
             cmbStatus.SelectedIndex = 1;
+        }
+
+        private void cmbFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var usuarioRepositorio = new UsuarioRepository();
+            switch (cmbFiltro.SelectedIndex)
+            {
+                case 0:
+                    CarregarTodosUsuario();
+                    break;
+
+                case 1:
+                    var usuariosAtivos = usuarioRepositorio.ListarUsuariosPorStatus("ativo");
+                        dataGridView1.DataSource = usuariosAtivos;
+                    break;
+
+                case 2:
+                    var usuariosInativos = usuarioRepositorio.ListarUsuariosPorStatus("inativo");
+                    dataGridView1.DataSource = usuariosInativos;
+                    break;
+            }
         }
     }
 }
