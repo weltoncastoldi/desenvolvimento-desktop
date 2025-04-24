@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MultApps.Models.Entities;
 using MultApps.Models.Enums;
@@ -156,15 +149,51 @@ namespace MultApps.Windows
                     break;
 
                 case 1:
-                    var usuariosAtivos = usuarioRepositorio.ListarUsuariosPorStatus("ativo");
+                    var usuariosAtivos = usuarioRepositorio.ListarUsuariosPorStatus(1);
                         dataGridView1.DataSource = usuariosAtivos;
                     break;
 
                 case 2:
-                    var usuariosInativos = usuarioRepositorio.ListarUsuariosPorStatus("inativo");
+                    var usuariosInativos = usuarioRepositorio.ListarUsuariosPorStatus(0);
                     dataGridView1.DataSource = usuariosInativos;
                     break;
             }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show($"Houve um erro ao clicar duas vezes sobre o Grid");
+                return;
+            }
+
+            // Obtenha a linha selecionada
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+            // Obtenha o ID da categoria da linha selecionada
+            var usuarioId = (int)row.Cells[0].Value;
+
+            // Use o método ObterCategoriaPorId para buscar os dados da categoria no banco de dados
+            var usuarioRepository = new UsuarioRepository();
+            var usuario = usuarioRepository.ObterUsuarioPorId(usuarioId);
+
+            if (usuario == null)
+            {
+                MessageBox.Show($"Categoria: #{usuarioId} não encontrada");
+                return;
+            }
+            // Preencha os campos de edição com os dados obtidos
+            txtNome.Text = usuario.Nome;
+            txtCpf.Text = usuario.Cpf;
+            txtEmail.Text = usuario.Email;
+            txtSenha.Text = usuario.Senha;
+            txtDataCadastro.Text = usuario.DataCriacao.ToString("dd/MM/yyyy HH:mm");
+            txtUltimoAcesso.Text = usuario.DataUltimoAcesso.ToString("dd/MM/yyyy HH:mm");
+            cmbStatus.SelectedIndex = (int)usuario.Status;
+
+            btnSalvar.Text = "Salvar alterações";
+
         }
     }
 }

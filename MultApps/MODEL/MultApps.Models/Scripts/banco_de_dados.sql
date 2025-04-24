@@ -31,5 +31,5 @@ CREATE TABLE IF NOT EXISTS usuario (
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     data_ultimo_acesso Datetime,
-    status ENUM('inativo', 'ativo') NOT NULL
+    status BIT NOT NULL
 );

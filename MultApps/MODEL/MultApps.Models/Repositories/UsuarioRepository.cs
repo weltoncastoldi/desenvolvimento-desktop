@@ -78,7 +78,7 @@ namespace MultApps.Models.Repositories
             }
         }
 
-        public DataTable ListarUsuariosPorStatus(string status)
+        public DataTable ListarUsuariosPorStatus(int status)
         {
             using (IDbConnection db = new MySqlConnection(ConnectionString))
             {
@@ -96,6 +96,7 @@ namespace MultApps.Models.Repositories
                 parametros.Add("@Status", status);
 
                 var usuarios = db.Query<Usuario>(comandoSql, parametros).ToList();
+                
                 // Converte a lista de usuários para um DataTable
                 var dataTable = new DataTable();
                 dataTable.Columns.Add("Id", typeof(int));
@@ -116,6 +117,27 @@ namespace MultApps.Models.Repositories
                         usuario.DataUltimoAcesso);
                 }
                 return dataTable;
+            }
+        }
+
+        public Usuario ObterUsuarioPorId(int id)
+        {
+            using (IDbConnection db = new MySqlConnection(ConnectionString))
+            {
+                var comandoSql = @"SELECT 
+                                    id AS Id, 
+                                    nome AS Nome,
+                                    cpf AS Cpf, 
+                                    email AS Email,
+                                    data_cadastro AS DataCriacao,
+                                    data_ultimo_acesso AS DataUltimoAcesso, 
+                                    status AS Status
+                                   FROM usuario 
+                                   WHERE id = @Id";
+                var parametros = new DynamicParameters();
+                parametros.Add("@Id", id);
+                var resultado = db.Query<Usuario>(comandoSql, parametros).FirstOrDefault();
+                return resultado;
             }
         }
     }
