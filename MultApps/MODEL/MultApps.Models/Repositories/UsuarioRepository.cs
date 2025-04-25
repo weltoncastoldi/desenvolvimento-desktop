@@ -140,5 +140,23 @@ namespace MultApps.Models.Repositories
                 return resultado;
             }
         }
+
+        public Usuario ObterUsuarioPorEmail(string email)
+        {
+            using (IDbConnection db = new MySqlConnection(ConnectionString))
+            {
+                var comandoSql = @"SELECT 
+                                    id AS Id, 
+                                    nome AS Nome,
+                                    email AS Email,
+                                    status AS Status
+                                   FROM usuario 
+                                   WHERE email = @Email";
+                var parametros = new DynamicParameters();
+                parametros.Add("@Email", email);
+                var resultado = db.Query<Usuario>(comandoSql, parametros).FirstOrDefault();
+                return resultado;
+            }
+        }
     }
 }

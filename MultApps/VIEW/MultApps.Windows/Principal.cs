@@ -12,6 +12,7 @@ namespace MultApps.Windows
 {
     public partial class Principal: Form
     {
+        public string NomeUsuario { get; set; }
         public Principal()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@ namespace MultApps.Windows
         {
             var loading = new SplashScreen();
             loading.ShowDialog();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            statusLabelUsuario.Text = $"Usuário: {NomeUsuario}";
         }
     }
 }
