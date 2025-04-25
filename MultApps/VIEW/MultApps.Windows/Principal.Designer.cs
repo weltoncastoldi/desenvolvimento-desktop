@@ -66,16 +66,19 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabelUsuario});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 425);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Size = new System.Drawing.Size(800, 25);
+            this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusLabelUsuario
             // 
+            this.statusLabelUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusLabelUsuario.ForeColor = System.Drawing.Color.MediumBlue;
             this.statusLabelUsuario.Name = "statusLabelUsuario";
-            this.statusLabelUsuario.Size = new System.Drawing.Size(0, 17);
+            this.statusLabelUsuario.Size = new System.Drawing.Size(151, 20);
+            this.statusLabelUsuario.Text = "toolStripStatusLabel1";
             // 
             // Principal
             // 

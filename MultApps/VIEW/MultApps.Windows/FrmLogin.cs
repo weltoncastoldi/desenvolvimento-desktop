@@ -58,7 +58,8 @@ namespace MultApps.Windows
 
             if (senhaConfere)
             {
-                MessageBox.Show("Usuarios e senha correto");
+                var formPrincipal = new Principal(usuario);
+                formPrincipal.Show();
             }
             else
             {
