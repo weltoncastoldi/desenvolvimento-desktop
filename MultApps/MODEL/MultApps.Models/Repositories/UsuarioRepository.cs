@@ -149,6 +149,7 @@ namespace MultApps.Models.Repositories
                                     id AS Id, 
                                     nome AS Nome,
                                     email AS Email,
+                                    senha AS Senha,
                                     status AS Status
                                    FROM usuario 
                                    WHERE email = @Email";
@@ -156,6 +157,23 @@ namespace MultApps.Models.Repositories
                 parametros.Add("@Email", email);
                 var resultado = db.Query<Usuario>(comandoSql, parametros).FirstOrDefault();
                 return resultado;
+            }
+        }
+
+        public bool AtualizarSenha(string novaSenha, string email)
+        {
+            using (IDbConnection db = new MySqlConnection(ConnectionString))
+            {
+                var comandoSql = @"UPDATE usuario
+                                   SET senha = @Senha
+                                   WHERE email = @Email";
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@Senha", novaSenha);
+                parametros.Add("@Email", email);
+
+                var resposta = db.Execute(comandoSql, parametros);
+                return resposta > 0;
             }
         }
     }

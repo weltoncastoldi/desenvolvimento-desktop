@@ -112,6 +112,7 @@
             this.btnRecuperarSenha.TabIndex = 7;
             this.btnRecuperarSenha.Text = "Recuperar senha";
             this.btnRecuperarSenha.UseVisualStyleBackColor = false;
+            this.btnRecuperarSenha.Click += new System.EventHandler(this.btnRecuperarSenha_Click);
             // 
             // FrmLogin
             // 

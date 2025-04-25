@@ -59,13 +59,36 @@ namespace MultApps.Windows
             if (senhaConfere)
             {
                 MessageBox.Show("Usuarios e senha correto");
-                return;
             }
             else
             {
                 MessageBox.Show("Usuário ou senha invalida");
-                return;
+            }
+        }
 
+        private void btnRecuperarSenha_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                MessageBox.Show("Informe o email do seu usuário");
+                txtUsuario.Focus();
+                return;
+            }
+
+            var usuarioRepository = new UsuarioRepository();
+
+            //gerar uma nova senha para o usuário
+            var novaSenha = CriptografiaService.Criptografar("123456");
+
+            var senhaAtualizou = usuarioRepository.AtualizarSenha(novaSenha, txtUsuario.Text);
+
+            if (senhaAtualizou)
+            {
+                MessageBox.Show($"Senha atualizada com sucesso. A nova senha é: 123456");
+            }
+            else
+            {
+                MessageBox.Show("Erro ao atualizar a senha");
             }
         }
     }
